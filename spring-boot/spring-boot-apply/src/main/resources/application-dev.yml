@@ -6,17 +6,17 @@ spring:
     password: root
 
 ## mybatis-plus
-#mybatis-plus:
-#  # *mapper.xml 位置
-#  mapper-locations: classpath:/mapperxmls/**/*.xml
-#  # entity包位置
-#  type-aliases-package: com.isfong.spring.boot.apply.model
-#  # 枚举包位置
-#  #typeEnumsPackage:
-#  configuration:
-#    map-underscore-to-camel-case: true
-#    cache-enabled: false
-#  global-config:
-#    db-config:
-#      id-type: auto
-#      field-strategy: not_null
+mybatis-plus:
+  # *mapper.xml 位置
+  mapper-locations: classpath:/mapperxmls/**/*.xml
+  # entity包位置
+  type-aliases-package: com.isfong.spring.boot.apply.model
+  # 枚举包位置
+  #typeEnumsPackage:
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_null
