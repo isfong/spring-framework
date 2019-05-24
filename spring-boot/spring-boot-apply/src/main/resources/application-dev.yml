@@ -5,6 +5,7 @@ spring:
     username: root
     password: root
 
+
 ## mybatis-plus
 mybatis-plus:
   # *mapper.xml 位置
@@ -20,3 +21,6 @@ mybatis-plus:
     db-config:
       id-type: auto
       field-strategy: not_null
+logging:
+  level:
+    com.isfong.spring.boot.apply.mapper: debug
