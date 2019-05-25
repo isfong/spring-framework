@@ -6,10 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.isfong.spring.boot.apply.model.User;
 import com.isfong.spring.boot.apply.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping( "users" )
@@ -26,5 +23,11 @@ public class UserController {
     @PostMapping( "sign-in" )
     public User sign_in( String username, String password ) {
         return service.getOne( new QueryWrapper< User >( ).eq( "username", username ).eq( "password", password ) );
+    }
+
+    @PostMapping( "sign-up" )
+    public User sign_up( @RequestBody User user ) {
+        service.save( user );
+        return user;
     }
 }
