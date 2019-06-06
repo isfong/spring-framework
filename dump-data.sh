@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-docker_container=mysql-5.7
+docker_container=mysql-utf8mb4-gtid-13306
 username=root
 password=root
 db=spring-framework
