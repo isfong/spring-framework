@@ -21,7 +21,36 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 -- GTID state at the beginning of the backup 
 --
 
-SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ '217a3415-883c-11e9-8363-0242ac110002:1-11';
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'b4d2bb31-8be5-11e9-866c-0242ac110002:1-10';
+
+--
+-- Table structure for table `permit`
+--
+
+DROP TABLE IF EXISTS `permit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `permit` (
+  `id` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
+  `parent` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
+  `icon` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
+  `path` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `level` int(2) NOT NULL,
+  `type` int(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `permit`
+--
+
+LOCK TABLES `permit` WRITE;
+/*!40000 ALTER TABLE `permit` DISABLE KEYS */;
+INSERT INTO `permit` VALUES ('0-0','0','Dashboard','colorlens','/pages/dashboard',1,1),('0-0-0','0-0','Home','home','/pages/dashboard/home/home',2,2),('0-1','0','Authorize','selection','/pages/authorize',1,1),('0-1-0','0-1','Permits','lock','/pages/authorize/permit/permit',2,2),('0-1-1','0-1','Roles','expressman','/pages/authorize/role/role',2,2),('0-2','0','List','list','/pages/list',1,1),('0-3','0','List','list','/pages/list',1,1);
+/*!40000 ALTER TABLE `permit` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `user`
@@ -32,14 +61,14 @@ DROP TABLE IF EXISTS `user`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `name` varchar(12) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `gender` int(3) NOT NULL DEFAULT '0',
   `birthday` date NOT NULL DEFAULT '1970-01-01',
-  `username` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
-  `password` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `username` varchar(32) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `password` varchar(32) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `state` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +77,6 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'jack',0,'2019-05-30','jacks','jackps',0),(2,'tomcat',1,'1979-01-01','tomcat','tomcatpass',0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
@@ -62,4 +90,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-06 18:02:30
+-- Dump completed on 2019-06-12 18:07:24

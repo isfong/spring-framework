@@ -1,10 +1,33 @@
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:13306/spring-framework?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true
-    username: root
-    password: root
+server:
+  servlet:
+    context-path: /api
 
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  shardingsphere:
+    datasource:
+      names: master, slave
+      master:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:13306/spring-framework?characterEncoding=utf-8
+        username: root
+        password: root
+      slave:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:23306/spring-framework?characterEncoding=utf-8
+        username: root
+        password: root
+    masterslave:
+      load-balance-algorithm-type: round_robin
+      name: dataSource
+      master-data-source-name: master
+      slave-data-source-names: slave
+    props:
+      sql:
+        show: true
 
 ## mybatis-plus
 mybatis-plus:
@@ -21,6 +44,6 @@ mybatis-plus:
     db-config:
       id-type: auto
       field-strategy: not_null
-logging:
-  level:
-    com.isfong.spring.boot.apply.mapper: debug
+#logging:
+#  level:
+#    com.isfong.spring.boot.apply.mapper: debug
